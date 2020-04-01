@@ -4,5 +4,5 @@
 西电 安徽大学
 
 ## 打包成exe
-pip install pyinstaller
+pip install pyinstaller<br>
 pyinstaller -F GPA_Calculator.py
