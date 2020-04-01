@@ -5,4 +5,5 @@
 
 ## 打包成exe
 pip install pyinstaller<br>
-pyinstaller -F GPA_Calculator.py
+pyinstaller -F GPA_Calculator.py<br>
+生成的exe在 dist文件夹内部<br>
