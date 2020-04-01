@@ -7,7 +7,7 @@ V0
 学校代码：西电：0 安大：1 南开：2 兰大：3 
 
 '''
-print("西电er请输入0；安大er请输入1；南开er请输入2；兰大儿请输入3")
+print("西电er请输入0；安大er请输入1；南开er请输入2；兰大儿请输入3; 郑大儿请输入4；浙大儿请输入5；")
 university = input()
 
 gpa_count = {0:4,1:5}
@@ -185,7 +185,29 @@ def case4(score):
         c = 0
     return s, c
 
-switch = {'0':case0,'1':case1, '2':case2, '3':case3, '4':case4}
+'''
+浙大GPA算法
+2009年：”http://kyjs.zju.edu.cn/chinese_old/redir.php?catalog_id=711168&object_id=712935“
+'''
+def case5(score):
+    rank = {"优":100, "良":80, "中":70, "及格":60, "不及格":0, "合格":75, "不合格":0}
+    try:
+        s = int(score)
+    except ValueError:
+        s = float(rank[score])
+    if(85 <= s <= 100):
+        c = 4.0
+    elif(60 <= s <= 84):
+        a = s - 60
+        c =  a / 10 + 1.5
+    else:
+        c = 0
+    return s, c
+
+def case6(score):
+    pass
+
+switch = {'0':case0,'1':case1, '2':case2, '3':case3, '4':case4, '5':case5, '6':case6}
 
 
 while(True):
