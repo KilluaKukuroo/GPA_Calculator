@@ -1,7 +1,7 @@
 # GPA_Calculator
 ## 计算高校的GPA
-目前支持的学校：
-西电 安徽大学
+目前支持的学校：<br>
+西电 安徽大学 南开大学 兰州大学 郑州大学 浙大 北大 <br>
 
 ## 打包成exe
 pip install pyinstaller<br>
