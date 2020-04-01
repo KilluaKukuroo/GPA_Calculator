@@ -7,7 +7,7 @@ V0
 学校代码：西电：0 安大：1 南开：2 兰大：3 
 
 '''
-print("西电er请输入0；安大er请输入1；南开er请输入2；兰大儿请输入3; 郑大儿请输入4；浙大儿请输入5；")
+print("西电er请输入0；安大er请输入1；南开er请输入2；兰大儿请输入3; 郑大儿请输入4；浙大儿请输入5；北大er请输入6；")
 university = input()
 
 gpa_count = {0:4,1:5}
@@ -204,8 +204,22 @@ def case5(score):
         c = 0
     return s, c
 
+'''
+北大GPA算法：课程绩点=4-3（100-X）^2/1600（60≤X≤100）
+非百分制课程成绩，综合性考试、毕业论文成绩等均不参与平均学分绩点（GPA）计算。EX、I、IP、P、NP、W 均不参与平均学分绩点（GPA）计算。
+2019年，”http://www.dean.pku.edu.cn/web/rules_info.php?id=12“
+'''
 def case6(score):
-    pass
+    try:
+        s = float(score)
+    except ValueError:
+        print("北大非百分制成绩不参与GPA计算，请继续输入百分制成绩；")
+        return -1,-1
+    if(60 <= s <= 100):
+        c = 4 - 3 * (100-s)**2 / 1600
+    else:
+        c = 0
+    return s, c
 
 switch = {'0':case0,'1':case1, '2':case2, '3':case3, '4':case4, '5':case5, '6':case6}
 
@@ -218,14 +232,14 @@ while(True):
         score = line.split(" ")[0]
         credit_full = int(line.split(" ")[1])
     except IndexError:
-        print("请按行输入分数或等级，和对应的学分，用空格分隔。例如：90 3; 优秀 2")
+        print("IndexError; 请按行输入分数或等级，和对应的学分，用空格分隔。例如：90 3; 优秀 2")
         continue
-    
-    course_credit_sum += credit_full
 
     s, c = switch[university](score)
-    score_sum += s * credit_full
-    credit_sum += c * credit_full
+    if(s >0 or c > 0):        #解决北大等级制成绩不计入GPA的bug
+        course_credit_sum += credit_full
+        score_sum += s * credit_full
+        credit_sum += c * credit_full
 
 
 print("您的百分制GPA为：", score_sum / course_credit_sum)
