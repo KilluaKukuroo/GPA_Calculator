@@ -4,10 +4,10 @@ import time
 V0
 2020-3-30
 功能：通过读取键盘输入的课程百分制或者等级制成绩和对应课程学分，计算百分制平均成绩和GPA绩点；
-学校代码：西电：0 安大：1 南开：2
+学校代码：西电：0 安大：1 南开：2 兰大：3 
 
 '''
-print("西电er请输入0；安大er请输入1；南开er请输入2")
+print("西电er请输入0；安大er请输入1；南开er请输入2；兰大儿请输入3")
 university = input()
 
 gpa_count = {0:4,1:5}
@@ -134,7 +134,32 @@ def case2(score):
 
     return s, c
 
-switch = {'0':case0,'1':case1, '2':case2}
+'''
+兰州大学本科生GPA：”http://archives.lzu.edu.cn/pub/search/pub_default.asp?fmt=&fopen=&showtitle=&showbtn=&fpub=1&fid=320&id=29“
+'''
+def case3(score):
+    rank = {"优":95, "良":85, "中":75, "及格":65, "不及格":50}
+    try:
+        s = int(score)
+    except ValueError:
+        s = float(rank[score])
+    if(90 <= s <= 100):
+        a = s - 90
+        c = a / 10 + 4.0
+    elif(80 <= s <= 89):
+        a = s - 80
+        c = a / 10 + 3.0
+    elif(70 <= s <= 79):
+        a = s - 70
+        c = a / 10 + 2.0
+    elif(60 <= s <= 69):
+        a = s - 60
+        c = a / 10 + 1.0
+    else:
+        c = 0
+    return s, c
+
+switch = {'0':case0,'1':case1, '2':case2, '3':case3}
 
 
 while(True):
