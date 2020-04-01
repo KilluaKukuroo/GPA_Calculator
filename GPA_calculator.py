@@ -4,10 +4,10 @@ import time
 V0
 2020-3-30
 功能：通过读取键盘输入的课程百分制或者等级制成绩和对应课程学分，计算百分制平均成绩和GPA绩点；
-学校代码：西电：0 安大：1
+学校代码：西电：0 安大：1 南开：2
 
 '''
-print("西电er：请输入0；安大er请输入1")
+print("西电er请输入0；安大er请输入1；南开er请输入2")
 university = input()
 
 gpa_count = {0:4,1:5}
@@ -46,6 +46,7 @@ def draw_circle():
 
 draw_circle()
 print("请按行输入分数或等级，和对应的学分，用空格分隔。例如：90 3; 优秀 2；\n输入#结束并打印百分制GPA和平均绩点;")
+
 '''
 西电GPA计算；
 2018年修订，4分制：”https://info.xidian.edu.cn/info/1015/16588.htm“
@@ -97,7 +98,43 @@ def case1(score):
     c = (s/10) - 5
     return s, c
 
-switch = {'0':case0,'1':case1}
+'''
+南开大学GPA计算
+2019年征求意见稿：“https://chem.nankai.edu.cn/res/bk/2019/南开大学本科课程成绩绩点制管理办法（征求意见稿）.pdf”
+备注：南开的优秀、良好等都对应了好几等百分制成绩和绩点，这里都取最高的；通过和不通过没有给绩点只给了百分制范围，这里分别按照80和0计算；
+'''
+def case2(score):
+    rank = {"优秀":100, "良好":89, "一般":79, "及格":69, "不及格":0, "通过":80, "不通过":0}
+    try:
+        s = int(score)
+    except ValueError:
+        s = float(rank[score])
+    if(94 <= s <= 100):
+        c = 4.0
+    elif(90<=s<=93):
+        c = 3.7
+    elif(87<=s<=89):
+        c = 3.3
+    elif(83 <= s <= 86):
+        c = 3.0
+    elif(80 <= s <= 82):
+        c = 2.7
+    elif(77 <= s <= 79):
+        c = 2.3
+    elif(73 <= s <=76):
+        c = 2.0
+    elif (70 <= s <= 72):
+        c = 1.7
+    elif (67 <= s <= 69):
+        c = 1.3
+    elif (60 <= s <= 66):
+        c = 1.0
+    else:
+        c = 0
+
+    return s, c
+
+switch = {'0':case0,'1':case1, '2':case2}
 
 
 while(True):
