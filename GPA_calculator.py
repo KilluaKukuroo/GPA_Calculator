@@ -158,8 +158,34 @@ def case3(score):
     else:
         c = 0
     return s, c
+'''
+郑州大学2017年GPA计算：”http://www5.zzu.edu.cn/flfg/info/1027/1378.htm“
+'''
+def case4(score):
+    rank = {"优":95, "良":75, "中":75, "及格":65, "差":0}
+    try:
+        s = int(score)
+    except ValueError:
+        s = float(rank[score])
+    if(90 <= s <= 100):
+        c = 4.0
+    elif(85 <= s <= 89):
+        c =  3.7
+    elif(80 <= s <= 84):
+        c = 3.2
+    elif(75 <= s <= 79):
+        c = 2.7
+    elif(70 <= s <= 74):
+        c = 2.2
+    elif(65 <= s <= 69):
+        c = 1.7
+    elif(60 <= s <= 64):
+        c = 1.2
+    else:
+        c = 0
+    return s, c
 
-switch = {'0':case0,'1':case1, '2':case2, '3':case3}
+switch = {'0':case0,'1':case1, '2':case2, '3':case3, '4':case4}
 
 
 while(True):
